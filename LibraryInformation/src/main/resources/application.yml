@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/library_information
+    username: root
+    password: 1234
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    sql-parser-cache: true
+#    sql-parser-config:
+#      enable-sql-parser: true
+#logging:
+#  level:
+#    com:
+#      baomidou:
+#        mybatisplus: DEBUG
+#    com.baomidou.mybatisplus.core.executor.MybatisPlusExecutor: debug
+
+server:
+  port: 8080
