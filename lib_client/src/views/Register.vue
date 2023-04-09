@@ -47,7 +47,7 @@
                                 <td class="td_right"><input type="text" name="checkcode" 
                                     id="checkcode" v-model="checkCode" v-on:blur="checkcodeBlur"
                                     placeholder="请输入验证码">
-                                    <img id="img_check" src="/api/checkCode" title="看不清?点击换一张"
+                                    <img id="img_check" src="/api/checkCode" title="看不清?点击换一张" alt="加载失败"
                                     @click="freshCheckCode">
                                 </td>
                             </tr>
@@ -189,6 +189,7 @@ const options = {
                 });
                 return false;
             }
+            if(this.idBlur())
             axios.post('/api/users/register',{
                     user:this.user,
                     checkCode:this.checkCode
@@ -227,7 +228,6 @@ export default options;
 
 .rg_bg{
     width: 100%;
-    height: 100vh;
     margin: auto;
     background-image: linear-gradient(to right, #fbc2eb, #a6c1ee);
     position: absolute;
@@ -292,11 +292,9 @@ export default options;
 #username,
 #password,
 #_password,
-#email,
 #name,
 #tel,
-#checkcode,
-#birthday {
+#checkcode{
     width: 251px;
     height: 32px;
     border: 1px solid #A6A6A6;
@@ -314,6 +312,7 @@ export default options;
     height: 40px;
     /*设置垂直居中*/
     vertical-align: middle;
+    border-radius: 5px;
 }
 
 #btn_sub {
