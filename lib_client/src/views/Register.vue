@@ -190,6 +190,7 @@ const options = {
                 return false;
             }
             if(this.idBlur())
+                return false;
             axios.post('/api/users/register',{
                     user:this.user,
                     checkCode:this.checkCode
