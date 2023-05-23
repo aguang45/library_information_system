@@ -46,7 +46,7 @@
                 <td class="td_left"><label for="checkcode">验证码</label></td>
                 <td class="td_right"><input type="text" name="checkcode"
                                             id="checkcode" v-model="checkCode" v-on:blur="checkcodeBlur"
-                                            placeholder="请输入验证码">
+                                            placeholder="请输入验证码" @keyup.enter="register">
                   <img id="img_check" src="/api/checkCode" title="看不清?点击换一张" alt="加载失败"
                        @click="freshCheckCode">
                 </td>

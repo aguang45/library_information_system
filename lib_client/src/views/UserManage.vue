@@ -284,7 +284,7 @@ const options = {
         },
         //批量删除
         deleteByIds() {
-            if (this.multipleSelection.length == 0)
+            if (this.multipleSelection.length === 0)
                 this.$message({
                     message: '请至少选择一项',
                     type: 'warning'
