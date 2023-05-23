@@ -13,8 +13,6 @@ javaee课程作业-图书馆信息管理系统，后端使用mysql+mybatis-plus+
 3.  管理员账户：admin,密码：admin
 
 部分页面截图如下：
-![登录页面](SampleImageimage1.png)
-
-![注册页面](SampleImageimage2.png)
-
-![主页面](SampleImageimage3.png)
+![SampleImageimage2](https://user-images.githubusercontent.com/88522807/229819849-004a513e-1557-44f0-9315-3208a3b3d26f.png)
+![SampleImageimage3](https://user-images.githubusercontent.com/88522807/229819861-227ef89f-805a-4cb3-907d-66d1d2575647.png)
+![SampleImageimage1](https://user-images.githubusercontent.com/88522807/229819863-8554e7a2-d9ba-471b-98ff-9da40ccc800d.png)
