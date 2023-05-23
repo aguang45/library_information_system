@@ -12,6 +12,9 @@ javaee课程作业-图书馆信息管理系统，后端使用mysql+mybatis-plus+
 2.  配置前端服务器，在浏览器访问，默认端口80
 3.  管理员账户：admin,密码：admin
 
+#### 不足
+后端没有进行权限控制，可以用任意用户的token直接请求接口，有待完善
+
 部分页面截图如下：
 ![SampleImageimage2](https://user-images.githubusercontent.com/88522807/229819849-004a513e-1557-44f0-9315-3208a3b3d26f.png)
 ![SampleImageimage3](https://user-images.githubusercontent.com/88522807/229819861-227ef89f-805a-4cb3-907d-66d1d2575647.png)
