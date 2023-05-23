@@ -3,6 +3,10 @@
 #### 介绍
 javaee课程作业-图书馆信息管理系统，后端使用mysql+mybatis-plus+springboot，前端使用vue2+elementUI，使用token做验证
 
+#### 演示链接
+http://aguang45.westeurope.cloudapp.azure.com/
+仅供演示，请不要恶意访问，谢谢
+
 #### 软件架构
 后端使用mysql+mybatis-plus+springboot，前端使用vue2+elementUI，使用token做验证
 
@@ -14,6 +18,7 @@ javaee课程作业-图书馆信息管理系统，后端使用mysql+mybatis-plus+
 
 #### 不足
 后端没有进行权限控制，可以用任意用户的token直接请求接口，有待完善
+
 
 部分页面截图如下：
 ![SampleImageimage2](https://user-images.githubusercontent.com/88522807/229819849-004a513e-1557-44f0-9315-3208a3b3d26f.png)
