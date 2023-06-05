@@ -145,22 +145,6 @@ public class BorrowController {
     }
 
     /**
-     * 分页查询借阅信息
-     *
-     * @param page
-     * @param size
-     * @return
-     */
-//    @GetMapping("/page")
-    public Result getByPage(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size) {
-        IPage<Borrow> borrowPage = new Page<>(page, size);
-        borrowDao.selectPage(borrowPage, null);
-        Integer code = borrowPage != null ? Code.GET_OK : Code.GET_ERR;
-        String msg = borrowPage != null ? "" : "数据查询失败，请重试！";
-        return new Result(code, borrowPage, msg);
-    }
-
-    /**
      * 根据id批量删除借阅信息
      *
      * @param ids

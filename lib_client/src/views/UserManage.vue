@@ -14,11 +14,14 @@
                     </el-input>
                 </span>
                 <div style="float: right;">
-                    <el-button type="primary" style="margin-right: 10px;" @click="addUser">新增</el-button>
-                    <el-button type="danger" style="margin-right: 60px;" @click="deleteByIds">批量删除</el-button>
+                    <el-button type="primary" style="margin-right: 10px;"
+                               @click="addUser">新增</el-button>
+                    <el-button type="danger" style="margin-right: 60px;"
+                               @click="deleteByIds">批量删除</el-button>
                 </div>
             </div>
-            <el-table :data="tableData" stripe style="width: 100%" @selection-change="handleSelectionChange"
+            <el-table :data="tableData" stripe style="width: 100%"
+                      @selection-change="handleSelectionChange"
             :header-cell-style="{background:'#f4f4f4',color:'#80878f'}">
                 <el-table-column type="selection" align="center" width="50">
                 </el-table-column>
@@ -37,10 +40,12 @@
                         <el-button type="warning" size="small" plain style="margin-right: 10px;" 
                         @click="editUser(scope.row)">修改</el-button>
                         <!-- <el-button type="danger" size="small" plain>删除</el-button> -->
-                        <el-popconfirm confirm-button-text='确定' cancel-button-text='不用了' 
+                        <el-popconfirm confirm-button-text='确定'
+                                       cancel-button-text='不用了'
                         icon="el-icon-info" icon-color="red" title="确定要删除吗？"
                         @confirm="deleteOne(scope.row)">
-                            <el-button slot="reference" type="danger" size="small" plain
+                            <el-button slot="reference" type="danger"
+                                       size="small" plain
                             > 删除</el-button>
                         </el-popconfirm>
                     </template>
@@ -64,17 +69,20 @@
 
                 <el-form-item label="用户名" prop="uid">
                     <el-input v-model="user.uid" style="width: 218px"
-                              :disabled="flag" v-on:blur="checkUid" placeholder="请输入用户名"
+                              :disabled="flag" v-on:blur="checkUid"
+                              placeholder="请输入用户名"
                     ></el-input>
                 </el-form-item>
 
                 <el-form-item label="姓名" prop="uname">
-                    <el-input v-model="user.uname" style="width: 218px" placeholder="请输入用户姓名"
+                    <el-input v-model="user.uname" style="width: 218px"
+                              placeholder="请输入用户姓名"
                     ></el-input>
                 </el-form-item>
 
                 <el-form-item label="手机号" prop="uphone">
-                    <el-input v-model="user.uphone" style="width: 218px" placeholder="请输入用户手机号"
+                    <el-input v-model="user.uphone" style="width: 218px"
+                              placeholder="请输入用户手机号"
                     ></el-input>
                 </el-form-item> 
 
@@ -91,7 +99,8 @@
                 </el-form-item>
 
                 <el-form-item>
-                    <el-button type="primary" style="margin-right: 55px;" @click="submitForm">提交</el-button>
+                    <el-button type="primary" style="margin-right: 55px;" @click="submitForm">提交
+                    </el-button>
                 </el-form-item>
             </el-form>
         </el-dialog>
@@ -146,9 +155,9 @@ const options = {
     methods: {
         //提交表单
         submitForm() {
-            if(this.user === null || this.user.uid === '' || this.user.uname === '' 
-            || this.user.uphone === '' || this.user.uidentity === '' 
-            || this.user.password === ''){
+            if(this.user === null || this.user.uid === ''
+                || this.user.uname === '' || this.user.uphone === ''
+                || this.user.uidentity === '' || this.user.password === ''){
                 this.$message({
                     message: '请填写完整信息',
                     type: 'error'
@@ -291,7 +300,8 @@ const options = {
                 });
             else {
                 //弹出提示框
-                this.$confirm('此操作将永久删除这些数据, 是否继续?', '提示', {
+                this.$confirm('此操作将永久删除这些数据, 是否继续?',
+                    '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'

@@ -15,7 +15,8 @@
                 </span>
             </div>
             <el-table :data="tableData" style="width: 100%" 
-            @selection-change="handleSelectionChange" :row-class-name="tableRowClassName"
+            @selection-change="handleSelectionChange"
+                      :row-class-name="tableRowClassName"
             :header-cell-style="{background:'#f4f4f4',color:'#80878f'}">
                 <el-table-column type="index" label="序号" width="100" align="center">
                 </el-table-column>
@@ -110,7 +111,8 @@ const options = {
             var hour = date.getHours();
             var minute = date.getMinutes();
             var second = date.getSeconds();
-            return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+            return year + '-' + month + '-' + day + ' ' + hour + ':' +
+                minute + ':' + second;
         },
         //表格颜色
         tableRowClassName({row}) {

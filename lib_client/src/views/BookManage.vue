@@ -27,9 +27,12 @@
                     v-if="isAdmin()">批量删除</el-button>
                 </div>
             </div>
-            <el-table :data="tableData" style="width: 100%" @selection-change="handleSelectionChange"
-            :header-cell-style="{background:'#f4f4f4',color:'#80878f'}" :row-class-name="tableRowClassName">
-                <el-table-column type="selection" align="center" width="50" v-if="isAdmin()">
+            <el-table :data="tableData" style="width: 100%"
+                      @selection-change="handleSelectionChange"
+            :header-cell-style="{background:'#f4f4f4',color:'#80878f'}"
+                      :row-class-name="tableRowClassName">
+                <el-table-column type="selection" align="center" width="50"
+                                 v-if="isAdmin()">
                 </el-table-column>
                 <el-table-column type="index" label="序号" width="100" align="center">
                 </el-table-column>
@@ -43,18 +46,23 @@
                 </el-table-column>
                 <el-table-column label="操作" align="center">
                     <template slot-scope="scope">
-                        <el-button type="warning" size="small" plain style="margin-right: 10px;" v-if="isAdmin()"
+                        <el-button type="warning" size="small" plain style="margin-right: 10px;"
+                                   v-if="isAdmin()"
                         @click="editBook(scope.row)">修改</el-button>
-                        <el-popconfirm confirm-button-text='确定' cancel-button-text='不用了' 
+                        <el-popconfirm confirm-button-text='确定'
+                                       cancel-button-text='不用了'
                         icon="el-icon-info" icon-color="red" title="确定要删除吗？"
                         @confirm="deleteOne(scope.row)">
-                            <el-button slot="reference" type="danger" size="small" plain v-if="isAdmin()"
+                            <el-button slot="reference" type="danger" size="small"
+                                       plain v-if="isAdmin()"
                             > 删除</el-button>
                         </el-popconfirm>
                         <el-button type="primary" size="small" plain style="margin-left: 10px;"
-                        :disabled="isFree(scope.row)" @click="borrowBook(scope.row)">借阅</el-button>
-                        <el-button type="success" size="small" plain style="margin-left: 10px;" v-if="isAdmin()"
-                        :disabled="!isFree(scope.row)" @click="returnBook(scope.row)">归还</el-button>
+                        :disabled="isFree(scope.row)"
+                                   @click="borrowBook(scope.row)">借阅</el-button>
+                        <el-button type="success" size="small" plain style="margin-left: 10px;"
+                                   v-if="isAdmin()" :disabled="!isFree(scope.row)"
+                                   @click="returnBook(scope.row)">归还</el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -75,21 +83,25 @@
                      :model="book" label-width="80px">
 
                 <el-form-item label="编号" prop="bid">
-                    <el-input v-model="book.bid" style="width: 218px" placeholder="请输入书籍编号"
+                    <el-input v-model="book.bid" style="width: 218px"
+                              placeholder="请输入书籍编号"
                               :disabled="flag" v-on:blur="checkBid"
                     ></el-input>
                 </el-form-item>
 
                 <el-form-item label="书名" prop="bname">
-                    <el-input v-model="book.bname" style="width: 218px" placeholder="请输入书籍名称"></el-input>
+                    <el-input v-model="book.bname" style="width: 218px"
+                              placeholder="请输入书籍名称"></el-input>
                 </el-form-item>
 
                 <el-form-item label="作者" prop="bauthor">
-                    <el-input v-model="book.bauthor" style="width: 218px" placeholder="请输入书籍作者"></el-input>
+                    <el-input v-model="book.bauthor" style="width: 218px"
+                              placeholder="请输入书籍作者"></el-input>
                 </el-form-item> 
 
                 <el-form-item label="状态" prop="bstatus" >
-                    <el-select v-model="book.bstatus" style="width: 218px" clearable :disabled="!flag">
+                    <el-select v-model="book.bstatus" style="width: 218px"
+                               clearable :disabled="!flag">
                         <el-option value="未借出" label="未借出"></el-option>
                         <el-option value="已借出" label="已借出"></el-option>
                     </el-select>
@@ -219,7 +231,8 @@ const options = {
             var hour = date.getHours();
             var minute = date.getMinutes();
             var second = date.getSeconds();
-            return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+            return year + '-' + month + '-' + day + ' ' + hour + ':' +
+                minute + ':' + second;
         },
         //借阅按钮是否可用
         isFree(row) {
@@ -237,8 +250,9 @@ const options = {
         },
         //提交表单
         submitForm() {
-            if(this.book === null || this.book.bid === '' || this.book.bname === '' 
-            || this.book.bauthor === '' || this.book.bstatus === ''){
+            if(this.book === null || this.book.bid === ''
+                || this.book.bname === '' || this.book.bauthor === ''
+                || this.book.bstatus === ''){
                 this.$message({
                     message: '请填写完整信息',
                     type: 'error'
@@ -394,7 +408,8 @@ const options = {
                 });
             else {
                 //弹出提示框
-                this.$confirm('此操作将永久删除这些数据, 是否继续?', '提示', {
+                this.$confirm('此操作将永久删除这些数据, 是否继续?',
+                    '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'

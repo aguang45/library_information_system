@@ -25,7 +25,8 @@
                 </div>
             </div>
             <el-table :data="tableData" style="width: 100%" 
-            @selection-change="handleSelectionChange" :row-class-name="tableRowClassName"
+            @selection-change="handleSelectionChange"
+                      :row-class-name="tableRowClassName"
             :header-cell-style="{background:'#f4f4f4',color:'#80878f'}">
                 <el-table-column type="selection" align="center" width="50">
                 </el-table-column>
@@ -45,11 +46,12 @@
                     <template slot-scope="scope">
                         <el-button type="warning" size="small" plain style="margin-right: 10px;" 
                         @click="editUser(scope.row)">修改</el-button>
-                        <el-popconfirm confirm-button-text='确定' cancel-button-text='不用了' 
+                        <el-popconfirm confirm-button-text='确定'
+                                       cancel-button-text='不用了'
                         icon="el-icon-info" icon-color="red" title="确定要删除吗？"
                         @confirm="deleteOne(scope.row)">
-                            <el-button slot="reference" type="danger" size="small" plain
-                            > 删除</el-button>
+                            <el-button slot="reference" type="danger" size="small"
+                                       plain> 删除</el-button>
                         </el-popconfirm>
                     </template>
                 </el-table-column>
@@ -70,7 +72,7 @@
             <el-form ref="borrow" :rules="rules" style="text-align: center;"
                      :model="borrow" label-width="80px">
 
-                <el-form-item label="用户名" prop="uid">
+                <el-form-item label="借阅人" prop="uid">
                     <el-select v-model="borrow.uid" filterable clearable
                     placeholder="选择用户名">
                         <el-option
@@ -99,6 +101,7 @@
                         <el-date-picker
                             v-model="borrow.bdate"
                             type="datetime"
+                            :clearable=false
                             placeholder="选择借阅日期时间"
                             default-time="12:00:00"
                             value-format="yyyy-MM-dd HH:mm:ss">
@@ -111,6 +114,7 @@
                         <el-date-picker
                             v-model="borrow.rdate"
                             type="datetime"
+                            :clearable=false
                             placeholder="选择归还日期时间"
                             default-time="12:00:00"
                             value-format="yyyy-MM-dd HH:mm:ss">
@@ -320,7 +324,8 @@ const options = {
                 });
             else {
                 //弹出提示框
-                this.$confirm('此操作将永久删除这些数据, 是否继续?', '提示', {
+                this.$confirm('此操作将永久删除这些数据, 是否继续?',
+                    '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'

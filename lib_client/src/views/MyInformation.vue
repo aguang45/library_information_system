@@ -4,38 +4,43 @@
                 :model="user" label-width="150px">
 
             <el-form-item label="用户名" prop="uid">
-                <el-input v-model="user.uid" style="width: 218px"
-                        disabled="true"
+                <el-input v-model="user.uid" style="width: 218px" disabled="true"
                 ></el-input>
             </el-form-item>
 
             <el-form-item label="姓名" prop="uname">
-                <el-input v-model="user.uname" style="width: 218px" :disabled="edit"></el-input>
+                <el-input v-model="user.uname" style="width: 218px" :disabled="edit">
+                </el-input>
             </el-form-item>
 
             <el-form-item label="手机号" prop="uphone">
-                <el-input v-model="user.uphone" style="width: 218px" :disabled="edit"></el-input>
+                <el-input v-model="user.uphone" style="width: 218px" :disabled="edit">
+                </el-input>
             </el-form-item> 
 
             <el-form-item label="新密码" prop="password" v-if="!edit">
-                <el-input show-password v-model="user.password" style="width: 218px" :disabled="edit"
-                v-on:blur="pwdCheck">
+                <el-input show-password v-model="user.password" style="width: 218px"
+                          :disabled="edit" v-on:blur="pwdCheck">
                 </el-input>
             </el-form-item>
 
             <el-form-item label="确认新密码" prop="_password" v-if="!edit">
-                <el-input show-password v-model="user._password" style="width: 218px" :disabled="edit"
+                <el-input show-password v-model="user._password" style="width: 218px"
+                          :disabled="edit"
                 v-on:blur="_pwdCheck">
                 </el-input>
             </el-form-item>
 
             <el-form-item v-if="edit">
-                <el-button type="primary" style="margin-right: 55px;" @click="setEdit">编辑</el-button>
+                <el-button type="primary" style="margin-right: 55px;" @click="setEdit">编辑
+                </el-button>
             </el-form-item>
 
             <el-form-item v-if="!edit">
-                <el-button type="primary" style="margin-right: 55px;" @click="submitForm">提交</el-button>
-                <el-button type="primary" style="margin-right: 55px;" @click="noEdit">取消</el-button>
+                <el-button type="primary" style="margin-right: 55px;" @click="submitForm">提交
+                </el-button>
+                <el-button type="primary" style="margin-right: 55px;" @click="noEdit">取消
+                </el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -135,8 +140,8 @@ const options = {
             if(!this._pwdCheck()){
                 return;
             }
-            if(this.user === null || this.user.uid === '' || this.user.uname === '' 
-            || this.user.uphone === ''){
+            if(this.user === null || this.user.uid === ''
+                || this.user.uname === '' || this.user.uphone === ''){
                 this.$message({
                     message: '请填写完整信息',
                     type: 'error'

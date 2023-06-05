@@ -3,10 +3,10 @@
     <div class="login-wrapper">
       <div class="header">登录</div>
       <form class="form-wrapper" :model="user" action="">
-        <input type="text" name="uid" placeholder="账号" class="input-item" v-model="user.uid"
-               v-on:blur="nameBlur">
-        <input type="password" name="password" placeholder="密码" class="input-item" v-model="user.password"
-               v-on:blur="pwdBlur" @keyup.enter="login">
+        <input type="text" name="uid" placeholder="账号" class="input-item"
+               v-model="user.uid" v-on:blur="nameBlur">
+        <input type="password" name="password" placeholder="密码" class="input-item"
+               v-model="user.password" v-on:blur="pwdBlur" @keyup.enter="login">
         <button class="btn" @click="login" type="button">登录</button>
       </form>
       <div class="msg">

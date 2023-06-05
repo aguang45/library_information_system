@@ -13,47 +13,55 @@
                 <td class="td_left"><label for="username">用户名</label></td>
                 <td class="td_right">
                   <input type="text" name="username" id="username"
-                         placeholder="请输入用户名" v-model="user.uid" v-on:blur="idBlur">
+                         placeholder="请输入用户名" v-model="user.uid"
+                         v-on:blur="idBlur">
                 </td>
               </tr>
               <tr>
                 <td class="td_left"><label for="name">姓名</label></td>
                 <td class="td_right">
                   <input type="text" name="name" id="name"
-                         placeholder="请输入姓名" v-model="user.uname" v-on:blur="nameBlur"></td>
+                         placeholder="请输入姓名" v-model="user.uname"
+                         v-on:blur="nameBlur"></td>
               </tr>
               <tr>
                 <td class="td_left"><label for="tel">手机号</label></td>
                 <td class="td_right">
                   <input type="text" name="tel" id="tel"
-                         placeholder="请输入手机号" v-model="user.uphone" v-on:blur="phoneBlur"></td>
+                         placeholder="请输入手机号" v-model="user.uphone"
+                         v-on:blur="phoneBlur"></td>
               </tr>
               <tr>
                 <td class="td_left"><label for="password">密码</label></td>
                 <td class="td_right">
                   <input type="password" name="password" id="password"
-                         placeholder="请输入密码" v-model="user.password" v-on:blur="pwdBlur">
+                         placeholder="请输入密码" v-model="user.password"
+                         v-on:blur="pwdBlur">
                 </td>
               </tr>
               <tr>
                 <td class="td_left"><label for="password">确认密码</label></td>
                 <td class="td_right">
                   <input type="password" name="_password" id="_password"
-                         placeholder="请再次输入密码" v-model="_password" v-on:blur="_pwdBlur">
+                         placeholder="请再次输入密码" v-model="_password"
+                         v-on:blur="_pwdBlur">
                 </td>
               </tr>
               <tr>
                 <td class="td_left"><label for="checkcode">验证码</label></td>
                 <td class="td_right"><input type="text" name="checkcode"
-                                            id="checkcode" v-model="checkCode" v-on:blur="checkcodeBlur"
-                                            placeholder="请输入验证码" @keyup.enter="register">
-                  <img id="img_check" src="/api/checkCode" title="看不清?点击换一张" alt="加载失败"
-                       @click="freshCheckCode">
+                                            id="checkcode" v-model="checkCode"
+                                            v-on:blur="checkcodeBlur"
+                                            placeholder="请输入验证码"
+                                            @keyup.enter="register">
+                  <img id="img_check" src="/api/checkCode" title="看不清?点击换一张"
+                       alt="加载失败" @click="freshCheckCode">
                 </td>
               </tr>
               <tr>
                 <td colspan="2" align="center"><input type="button"
-                                                      id="btn_sub" value="注册" @click="register"></td>
+                                                      id="btn_sub" value="注册"
+                                                      @click="register"></td>
               </tr>
             </table>
           </form>
@@ -94,7 +102,8 @@ const options = {
     },
     //刷新验证码
     freshCheckCode() {
-      document.getElementById('img_check').src = '/api/checkCode?id=' + new Date().getTime();
+      document.getElementById('img_check').src =
+          '/api/checkCode?id=' + new Date().getTime();
     },
     //验证账号是否存在
     idBlur() {
@@ -184,8 +193,9 @@ const options = {
     },
     //注册
     register() {
-      if (this.user.uid === '' || this.user.uname === '' || this.user.uphone === '' ||
-          this.user.password === '' || this._password === '' || this.checkCode === '') {
+      if (this.user.uid === '' || this.user.uname === ''
+          || this.user.uphone === '' || this.user.password === ''
+          || this._password === '' || this.checkCode === '') {
         this.$message({
           message: '请填写完整信息',
           type: 'error'
