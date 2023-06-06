@@ -7,6 +7,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class TokenInterceptor implements HandlerInterceptor {
 
@@ -26,8 +27,17 @@ public class TokenInterceptor implements HandlerInterceptor {
             token = token.substring(7);
             try {
                 // 解析Token并验证
-                new TokenUtil().validateToken(token);
-//                Jwts.parser().setSigningKey("mySecretKey").parseClaimsJws(token);
+                String username = TokenUtil.getUsernameFromToken(token);
+                String rolesFromToken = TokenUtil.getRolesFromToken(token);
+                if (username == null) {
+                    throw new JwtException("Invalid token");
+                }
+
+                // 将用户信息存储到 HttpSession
+                HttpSession session = request.getSession();
+                session.setAttribute("username", username);
+                session.setAttribute("roles", rolesFromToken);
+
                 // Token验证通过，继续处理请求
                 return true;
             } catch (JwtException e) {
@@ -41,4 +51,5 @@ public class TokenInterceptor implements HandlerInterceptor {
             return false;
         }
     }
+
 }

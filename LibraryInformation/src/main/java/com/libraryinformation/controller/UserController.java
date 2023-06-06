@@ -143,8 +143,8 @@ public class UserController {
         user.setPassword(DigestUtils.md5DigestAsHex(user.getPassword().getBytes()));
         Integer code = user.getPassword().equals(_user.getPassword()) ? Code.LOGIN_OK : Code.LOGIN_ERR;
         String msg = user.getPassword().equals(_user.getPassword()) ? "登录成功" : "用户名或密码错误，请重试！";
-        if (code == Code.LOGIN_OK) {
-            String token = new TokenUtil().createToken(_user.getUid());
+        if (code.equals(Code.LOGIN_OK)) {
+            String token = new TokenUtil().createToken(_user);
             _user.setPassword(null);
             _user.setUphone(null);
             return new Result(code, new LoginResponse(token,_user), msg);
