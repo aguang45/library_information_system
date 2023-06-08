@@ -16,7 +16,7 @@ https://aguang45.westeurope.cloudapp.azure.com/
 2.  配置前端服务器，在浏览器访问，默认端口80
 3.  管理员账户：admin,密码：admin
 
-#### 不足
+#### 不足(已完成，增加springsecurity)
 后端没有进行权限控制，可以用任意用户的token直接请求接口，有待完善(已完成，扩展使用springsecurity进一步的权限控制，请移步security分支)
 
 
