@@ -260,7 +260,7 @@ const options = {
             }else{
                 if (this.flag) {
                     //修改书籍信息
-                    axios.put('/api/books', this.bBook).then(res => {
+                    axios.put('/api/books', this.book).then(res => {
                         // console.log(res);
                         if (res.data.code === 20031) {
                             this.$message({

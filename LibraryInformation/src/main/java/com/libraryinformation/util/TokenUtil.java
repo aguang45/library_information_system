@@ -4,7 +4,7 @@ import com.libraryinformation.domain.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Date;
 
@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class TokenUtil {
     // 密钥
-    static String secret = "LibraryInformation";
+    private static final String secret = "LibraryInformation";
 
     /**
      * 生成token

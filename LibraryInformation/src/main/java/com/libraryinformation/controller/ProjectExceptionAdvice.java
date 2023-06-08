@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 /**
  * 全局异常处理类
  */
-@RestControllerAdvice
+//@RestControllerAdvice
 public class ProjectExceptionAdvice {
     /**
      * 系统异常
