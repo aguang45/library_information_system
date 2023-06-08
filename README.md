@@ -5,6 +5,7 @@ javaee课程作业-图书馆信息管理系统，后端使用mysql+mybatis-plus+
 
 #### 演示链接
 https://aguang45.westeurope.cloudapp.azure.com/
+测试账号:账号1:admin，密码1234；账号2：user，密码1234
 仅供演示，请不要恶意访问，谢谢
 
 #### 软件架构
@@ -14,7 +15,7 @@ https://aguang45.westeurope.cloudapp.azure.com/
 #### 使用说明
 1.  将项目添加到ide，安装相应的依赖，启动springboot启动类
 2.  配置前端服务器，在浏览器访问，默认端口80
-3.  管理员账户：admin,密码：admin
+3.  管理员账户：admin,密码：1234
 
 #### 不足(已完成，增加springsecurity)
 后端没有进行权限控制，可以用任意用户的token直接请求接口，有待完善(已完成，扩展使用springsecurity进一步的权限控制，请移步security分支)
