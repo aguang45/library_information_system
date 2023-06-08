@@ -89,7 +89,6 @@ const options = {
         uid: '',
         uname: '',
         uphone: '',
-        uidentity: '',
         password: ''
       }
     };
@@ -118,12 +117,18 @@ const options = {
           if (res.data.code === 20041) {
             this.isExist = true;  //账号存在
             this.$message({
-              message: '此账号已存在，请换一个',
+              message: res.data.msg,
               type: 'error'
             });
             return false;
-          } else
+          } else if (res.data.code === 20040) {
+            this.isExist = false; //账号不存在
+            this.$message({
+              message: res.data.msg,
+              type: 'success'
+            });
             return true;
+          }
         }).catch((err) => {
           console.log(err);
         });

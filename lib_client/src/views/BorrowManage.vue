@@ -149,9 +149,7 @@ const options = {
             totalPage: 0, // 总条数
             selid: '', // 查询记录编号
             seluid: '', // 查询用户名
-            // seluname: '', // 查询姓名
             selbid: '', // 查询书籍编号
-            // selbname: '', // 查询书籍名称
             multipleSelection: [], // 表格内左侧多选框勾选情况
             tableData: [], // 表格数据
 
@@ -263,7 +261,7 @@ const options = {
             this.title = '修改记录';
             this.dialogVisible = true;
             this.flag = true;
-            this.borrow = row;
+            this.borrow = { ...row }; //对象拷贝
             // console.log(row);
         },
         //清空dialog中表单中各控件的值

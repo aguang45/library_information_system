@@ -1,5 +1,8 @@
 package com.libraryinformation.controller;
 
+/**
+ * 状态码
+ */
 public class Code {
     public static final Integer LOGIN_OK = 20001;
     public static final Integer LOGIN_ERR = 20002;

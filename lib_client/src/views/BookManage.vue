@@ -260,7 +260,7 @@ const options = {
             }else{
                 if (this.flag) {
                     //修改书籍信息
-                    axios.put('/api/books', this.book).then(res => {
+                    axios.put('/api/books', this.bBook).then(res => {
                         // console.log(res);
                         if (res.data.code === 20031) {
                             this.$message({
@@ -321,7 +321,7 @@ const options = {
             this.title = '修改书籍';
             this.dialogVisible = true;
             this.flag = true;
-            this.book = row;
+            this.book = { ...row }; //对象的拷贝，防止修改时，表格中的数据也被修改
             // console.log(row);
         },
         //验证书籍编号是否存在

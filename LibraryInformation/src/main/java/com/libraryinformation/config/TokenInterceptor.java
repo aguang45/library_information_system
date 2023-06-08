@@ -2,13 +2,24 @@ package com.libraryinformation.config;
 
 import com.libraryinformation.util.TokenUtil;
 import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.Jwts;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.util.Collections;
+import java.util.List;
 
+/**
+ * token拦截器
+ */
+@Component
+@Slf4j
 public class TokenInterceptor implements HandlerInterceptor {
 
     /**
@@ -21,22 +32,33 @@ public class TokenInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        // 从请求头中获取Token
-        String token = request.getHeader("Authorization");
-        if (token != null && token.startsWith("Bearer ")) {
-            token = token.substring(7);
             try {
-                // 解析Token并验证
-                String username = TokenUtil.getUsernameFromToken(token);
-                String rolesFromToken = TokenUtil.getRolesFromToken(token);
-                if (username == null) {
-                    throw new JwtException("Invalid token");
+                String strAuth = request.getHeader("Authorization");
+//                log.info("Authorization:{}",strAuth);
+                if(strAuth == null){
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    return false;
+                }
+                String jwtToken = strAuth.replace("Bearer ", "");
+                if(StringUtils.containsWhitespace(jwtToken)){
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    return false;
+                }
+                //校验jwt
+                boolean verifyResult = TokenUtil.validateToken(jwtToken);
+                if(!verifyResult){
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    return false;
                 }
 
-                // 将用户信息存储到 HttpSession
-                HttpSession session = request.getSession();
-                session.setAttribute("username", username);
-                session.setAttribute("roles", rolesFromToken);
+                // 从Token中获取用户信息
+                String userInfo = TokenUtil.getUsernameFromToken(jwtToken);
+                String role = TokenUtil.getRolesFromToken(jwtToken);
+                //将用户角色放入SimpleGrantedAuthority中
+                List<SimpleGrantedAuthority> authorityList = Collections.singletonList(new SimpleGrantedAuthority(role));
+                //将用户信息放入SecurityContextHolder中
+                SecurityContextHolder.getContext().setAuthentication(
+                        new UsernamePasswordAuthenticationToken(userInfo, null, authorityList));
 
                 // Token验证通过，继续处理请求
                 return true;
@@ -45,11 +67,6 @@ public class TokenInterceptor implements HandlerInterceptor {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 return false;
             }
-        } else {
-            // 如果请求头中没有Token，返回401 Unauthorized状态码
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            return false;
-        }
     }
 
 }

@@ -221,7 +221,7 @@ const options = {
             this.title = '修改用户';
             this.dialogVisible = true;
             this.flag = true;
-            this.user = row;
+            this.user = { ...row };
             this.user.password='';
             // console.log(row);
         },

@@ -1,5 +1,7 @@
 package com.libraryinformation.util;
 
+import org.springframework.stereotype.Component;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -14,6 +16,7 @@ import java.util.Random;
 /**
  * 生成验证码工具类
  */
+@Component
 public class CheckCodeUtil {
 
     public static final String VERIFY_CODES = "123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -30,7 +33,7 @@ public class CheckCodeUtil {
      * @return
      * @throws IOException
      */
-    public static String outputVerifyImage(int width, int height, OutputStream os, int verifySize) throws IOException {
+    public String outputVerifyImage(int width, int height, OutputStream os, int verifySize) throws IOException {
         String verifyCode = generateVerifyCode(verifySize);
         outputImage(width, height, os, verifyCode);
         return verifyCode;
@@ -42,7 +45,7 @@ public class CheckCodeUtil {
      * @param verifySize 验证码长度
      * @return
      */
-    public static String generateVerifyCode(int verifySize) {
+    public String generateVerifyCode(int verifySize) {
         return generateVerifyCode(verifySize, VERIFY_CODES);
     }
 
@@ -53,7 +56,7 @@ public class CheckCodeUtil {
      * @param sources    验证码字符源
      * @return
      */
-    public static String generateVerifyCode(int verifySize, String sources) {
+    public String generateVerifyCode(int verifySize, String sources) {
         // 未设定展示源的字码，赋默认值大写字母+数字
         if (sources == null || sources.length() == 0) {
             sources = VERIFY_CODES;
@@ -77,7 +80,7 @@ public class CheckCodeUtil {
      * @return
      * @throws IOException
      */
-    public static String outputVerifyImage(int w, int h, File outputFile, int verifySize) throws IOException {
+    public String outputVerifyImage(int w, int h, File outputFile, int verifySize) throws IOException {
         String verifyCode = generateVerifyCode(verifySize);
         outputImage(w, h, outputFile, verifyCode);
         return verifyCode;
@@ -94,7 +97,7 @@ public class CheckCodeUtil {
      * @param code
      * @throws IOException
      */
-    public static void outputImage(int w, int h, File outputFile, String code) throws IOException {
+    public void outputImage(int w, int h, File outputFile, String code) throws IOException {
         if (outputFile == null) {
             return;
         }
@@ -123,7 +126,7 @@ public class CheckCodeUtil {
      * @param code
      * @throws IOException
      */
-    public static void outputImage(int w, int h, OutputStream os, String code) throws IOException {
+    public void outputImage(int w, int h, OutputStream os, String code) throws IOException {
         int verifySize = code.length();
         BufferedImage image = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
         Random rand = new Random();
@@ -199,7 +202,7 @@ public class CheckCodeUtil {
      * @param bc
      * @return
      */
-    private static Color getRandColor(int fc, int bc) {
+    private Color getRandColor(int fc, int bc) {
         if (fc > 255) {
             fc = 255;
         }
@@ -212,7 +215,7 @@ public class CheckCodeUtil {
         return new Color(r, g, b);
     }
 
-    private static int getRandomIntColor() {
+    private int getRandomIntColor() {
         int[] rgb = getRandomRgb();
         int color = 0;
         for (int c : rgb) {
@@ -222,7 +225,7 @@ public class CheckCodeUtil {
         return color;
     }
 
-    private static int[] getRandomRgb() {
+    private int[] getRandomRgb() {
         int[] rgb = new int[3];
         for (int i = 0; i < 3; i++) {
             rgb[i] = random.nextInt(255);
@@ -230,12 +233,12 @@ public class CheckCodeUtil {
         return rgb;
     }
 
-    private static void shear(Graphics g, int w1, int h1, Color color) {
+    private void shear(Graphics g, int w1, int h1, Color color) {
         shearX(g, w1, h1, color);
         shearY(g, w1, h1, color);
     }
 
-    private static void shearX(Graphics g, int w1, int h1, Color color) {
+    private void shearX(Graphics g, int w1, int h1, Color color) {
 
         int period = random.nextInt(2);
 
@@ -258,7 +261,7 @@ public class CheckCodeUtil {
 
     }
 
-    private static void shearY(Graphics g, int w1, int h1, Color color) {
+    private void shearY(Graphics g, int w1, int h1, Color color) {
 
         int period = random.nextInt(40) + 10; // 50;
 

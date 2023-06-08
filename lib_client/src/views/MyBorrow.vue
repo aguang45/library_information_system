@@ -14,7 +14,7 @@
                     </el-input>
                 </span>
             </div>
-            <el-table :data="tableData" style="width: 100%" 
+            <el-table :data="tableData" style="width: 100%"
             @selection-change="handleSelectionChange"
                       :row-class-name="tableRowClassName"
             :header-cell-style="{background:'#f4f4f4',color:'#80878f'}">
@@ -130,12 +130,11 @@ const options = {
         //刷新表格
         refreshTable() {
             // console.log('refresh');
-            axios.get('/api/borrows/page',{
+            axios.get('/api/borrows/page/'+this.seluid,{
                 params: {
                     page: this.currentPage,
                     size: this.sizePage,
                     id: this.selid,
-                    uid: this.seluid,
                     bid: this.selbid
                 }
             }).then(res => {

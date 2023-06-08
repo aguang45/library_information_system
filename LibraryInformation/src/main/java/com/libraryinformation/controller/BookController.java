@@ -7,11 +7,15 @@ import com.libraryinformation.dao.BookDao;
 import com.libraryinformation.domain.Book;
 import com.libraryinformation.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 图书控制器
+ */
 @RestController
 @Transactional
 @RequestMapping("/books")
@@ -25,6 +29,7 @@ public class BookController {
      * @return
      */
     @PostMapping
+    @PreAuthorize("hasAuthority('admin')")
     public Result save(@RequestBody Book book) {
         int flag = bookDao.insert(book);
         return new Result(flag == 1 ? Code.SAVE_OK:Code.SAVE_ERR,flag);
@@ -36,6 +41,7 @@ public class BookController {
      * @return
      */
     @PutMapping
+    @PreAuthorize("hasAuthority('admin')")
     public Result update(@RequestBody Book book) {
         int flag = bookDao.updateById(book);
         return new Result(flag == 1 ? Code.UPDATE_OK:Code.UPDATE_ERR,flag);
@@ -47,6 +53,7 @@ public class BookController {
      * @return
      */
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('admin')")
     public Result delete(@PathVariable String id) {
         int flag = bookDao.deleteById(id);
         return new Result(flag == 1 ? Code.DELETE_OK:Code.DELETE_ERR,flag);
@@ -58,6 +65,7 @@ public class BookController {
      * @return
      */
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('admin','user')")
     public Result getById(@PathVariable String id) {
         Book book = bookDao.selectById(id);
         Integer code = book != null ? Code.GET_OK : Code.GET_ERR;
@@ -75,6 +83,7 @@ public class BookController {
      * @return
      */
     @GetMapping("/page")
+    @PreAuthorize("hasAnyAuthority('admin','user')")
     public IPage<Book> getByPage(@RequestParam(defaultValue = "1") Integer page,
                                  @RequestParam(defaultValue = "10") Integer size,
                                  @RequestParam(required = false) String bid,
@@ -105,6 +114,7 @@ public class BookController {
      * @return
      */
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('admin')")
     public Result getAll() {
         List<Book> bookList = bookDao.getAll();
         Integer code = bookList != null ? Code.GET_OK : Code.GET_ERR;
@@ -118,6 +128,7 @@ public class BookController {
      * @return
      */
     @DeleteMapping("/ids")
+    @PreAuthorize("hasAuthority('admin')")
     public Result deleteByIds(@RequestBody List<String> ids) {
         int flag = bookDao.deleteBatchIds(ids);
         return new Result(flag == ids.size() ? Code.DELETE_OK:Code.DELETE_ERR,flag);

@@ -8,9 +8,11 @@ import com.libraryinformation.dao.UserDao;
 import com.libraryinformation.domain.Book;
 import com.libraryinformation.domain.Borrow;
 import com.libraryinformation.domain.User;
+import com.libraryinformation.util.TokenUtil;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootTest
 class LibraryInformationApplicationTests {
@@ -77,4 +79,21 @@ class LibraryInformationApplicationTests {
         System.out.println("一共多少条数据："+page.getTotal());
         System.out.println("数据："+page.getRecords());
     }*/
+
+
+//    @Autowired
+//    TokenUtil tokenUtil;
+
+    @Test
+    public void testToken(){
+//        String token="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMTEiLCJyb2xlcyI6ImFkbWluIiwiaWF0IjoxNjg2MTk2MjY2LCJleHAiOjE2ODYxOTk4NjZ9.Bnx5AogSLSFyflysamp1zgh5n4JlV1gNRcdiDg7UjDQ";
+//        boolean b = TokenUtil.validateToken(token);
+//        String usernameFromToken = TokenUtil.getUsernameFromToken(token);
+//        String rolesFromToken = TokenUtil.getRolesFromToken(token);
+//        System.out.println(b);
+//        System.out.println(usernameFromToken);
+//        System.out.println(rolesFromToken);
+        String encode = new BCryptPasswordEncoder().encode("1234");
+        System.out.println(encode);
+    }
 }

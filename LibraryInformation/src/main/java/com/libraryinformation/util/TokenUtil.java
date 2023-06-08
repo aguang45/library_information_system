@@ -4,8 +4,10 @@ import com.libraryinformation.domain.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
+
 
 /**
  * token工具类，用于生成token和验证token
@@ -20,17 +22,16 @@ public class TokenUtil {
      * @param user 用户对象
      * @return 返回生成的token
      */
-    public String createToken(User user) {
+    public static String createToken(User user) {
         long now = System.currentTimeMillis(); // 当前时间戳
         long expire = now + 1000L * 60 * 60; // 过期时间（1小时）
-        String token = Jwts.builder()
+        return Jwts.builder()
                 .setSubject(user.getUname()) // 设置主题（用户名）
                 .claim("roles", user.getUidentity()) // 存储用户权限信息
                 .setIssuedAt(new Date(now)) // 设置签发时间
                 .setExpiration(new Date(expire)) // 设置过期时间
                 .signWith(SignatureAlgorithm.HS256, secret) // 设置签名算法和密钥
                 .compact();
-        return token;
     }
 
     /**
@@ -54,11 +55,12 @@ public class TokenUtil {
      * @param token 需要验证的token
      * @return 返回是否有效
      */
-    public boolean validateToken(String token) {
+    public static boolean validateToken(String token) {
         try {
             Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
             return true;
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return false;
         }
     }

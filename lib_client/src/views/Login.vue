@@ -4,7 +4,7 @@
       <div class="header">登录</div>
       <form class="form-wrapper" :model="user" action="">
         <input type="text" name="uid" placeholder="账号" class="input-item"
-               v-model="user.uid" v-on:blur="nameBlur">
+               v-model="user.username" v-on:blur="nameBlur">
         <input type="password" name="password" placeholder="密码" class="input-item"
                v-model="user.password" v-on:blur="pwdBlur" @keyup.enter="login">
         <button class="btn" @click="login" type="button">登录</button>
@@ -23,7 +23,7 @@ const options = {
   data() {
     return {
       user: {
-        uid: '',
+        username: '',
         password: ''
       }
     }
@@ -34,7 +34,9 @@ const options = {
       if (this.nameBlur() === false || this.pwdBlur() === false) {
         return;
       }
-      axios.post('/api/users/login', this.user).then(res => {
+      axios.post('/api/login', this.user,{headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }}).then(res => {
         // console.log(res.data);
         if (res.data.code === 20001) {
           this.$message({
@@ -56,7 +58,7 @@ const options = {
     },
     // 账号输入框失去焦点
     nameBlur() {
-      if (this.user.uid === '') {
+      if (this.user.username === '') {
         this.$message({
           message: '请输入账号',
           type: 'error'
