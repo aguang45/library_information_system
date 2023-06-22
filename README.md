@@ -3,10 +3,6 @@
 #### 介绍
 javaee课程作业-图书馆信息管理系统，后端使用springboot+springsecurity+mybatis-plus+mysql，前端使用vue2+elementUI，使用token做验证
 
-#### 软件架构
-后端使用springboot+springsecurity+mybatis-plus+mysql，前端使用vue2+elementUI，使用token做验证
-
-
 #### 使用说明
 1. 创建数据库，导入数据库文件
 
