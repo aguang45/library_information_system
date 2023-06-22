@@ -19,7 +19,9 @@ javaee课程作业-图书馆信息管理系统，后端使用springboot+springse
    npm run serve
    ```
 
-4. 管理员账户：admin，密码：1234
+4.浏览器地址栏输入localhost进入页面（默认端口80）
+
+   管理员账户：admin，密码：1234
 
    普通账户：user，密码：1234
 
